@@ -2885,3 +2885,223 @@ text-align:center;
 
 }
 
+/*======================================================
+  OUR FAMILY + SOCIAL (YOUTUBE)
+======================================================*/
+
+/* ---------- Shared ---------- */
+
+.section-intro{
+    max-width:680px;
+    margin:0 auto;
+    color:#666;
+    line-height:1.8;
+}
+
+/* ---------- Our Family ---------- */
+
+.family{
+    background:white;
+}
+
+.script-title{
+    font-family:'Ballet','Brush Script MT',cursive;
+    font-weight:400;
+    font-size:92px;
+    line-height:1.35;
+    padding:10px 20px 0;
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+.family-slider{
+    position:relative;
+    max-width:900px;
+    margin:0 auto;
+    aspect-ratio:16/9;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#f5efe3;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+    border:1px solid rgba(184,145,70,.2);
+}
+
+.family-track{
+    position:absolute;
+    inset:0;
+}
+
+.family-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .8s ease;
+}
+
+.family-slide.active{
+    opacity:1;
+    z-index:1;
+}
+
+.family-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.family-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    color:var(--primary);
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.family-btn:hover{
+    background:var(--primary);
+    color:white;
+}
+
+.family-prev{ left:18px; }
+.family-next{ right:18px; }
+
+.family-dots{
+    position:absolute;
+    bottom:16px;
+    left:0;
+    width:100%;
+    z-index:5;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.family-dot{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:rgba(255,255,255,.6);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.family-dot.active{
+    background:var(--primary);
+    transform:scale(1.3);
+}
+
+/* ---------- Social / YouTube ---------- */
+
+.social{
+    background:#f5efe3;
+}
+
+.youtube-wrapper{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:center;
+}
+
+.youtube-thumb{
+    position:relative;
+    display:block;
+    aspect-ratio:16/9;
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    transition:var(--transition);
+}
+
+.youtube-thumb:hover{
+    transform:translateY(-8px);
+}
+
+.youtube-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.youtube-play{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.18);
+    transition:.3s;
+}
+
+.youtube-play i{
+    font-size:84px;
+    color:#FF0000;
+    background:white;
+    border-radius:50%;
+    line-height:1;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transition:.3s;
+}
+
+.youtube-thumb:hover .youtube-play{
+    background:rgba(0,0,0,.05);
+}
+
+.youtube-thumb:hover .youtube-play i{
+    transform:scale(1.1);
+}
+
+.youtube-content h3{
+    margin:15px 0 18px;
+    line-height:1.3;
+}
+
+.youtube-content p{
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+/* ---------- Tablet ---------- */
+
+@media(max-width:1024px){
+
+    .youtube-wrapper{
+        grid-template-columns:1fr;
+        gap:40px;
+        text-align:center;
+    }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:768px){
+
+    .script-title{
+        font-size:58px;
+    }
+
+    .family-slider{
+        aspect-ratio:4/3;
+    }
+
+    .family-btn{
+        width:40px;
+        height:40px;
+        font-size:15px;
+    }
+
+    .youtube-play i{
+        font-size:64px;
+    }
+
+}
