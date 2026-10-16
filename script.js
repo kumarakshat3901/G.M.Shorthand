@@ -384,3 +384,79 @@ if (menuToggle && navLinks) {
     });
 }
 
+/* ==========================================
+   OUR FAMILY SLIDESHOW
+========================================== */
+
+(function () {
+
+    const familySlider = document.getElementById("familySlider");
+    if (!familySlider) return;
+
+    const slides = familySlider.querySelectorAll(".family-slide");
+    const dotsBox = familySlider.querySelector(".family-dots");
+    const prevBtn = familySlider.querySelector(".family-prev");
+    const nextBtn = familySlider.querySelector(".family-next");
+
+    if (slides.length === 0) return;
+
+    let current = 0;
+    let timer;
+
+    // Create one dot per photo automatically
+    slides.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.className = "family-dot" + (i === 0 ? " active" : "");
+        dot.addEventListener("click", () => {
+            goTo(i);
+            restart();
+        });
+        dotsBox.appendChild(dot);
+    });
+
+    const dots = dotsBox.querySelectorAll(".family-dot");
+
+    function goTo(index) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+    }
+
+    function start() {
+        timer = setInterval(() => goTo(current + 1), 4000);
+    }
+
+    function restart() {
+        clearInterval(timer);
+        start();
+    }
+
+    nextBtn.addEventListener("click", () => { goTo(current + 1); restart(); });
+    prevBtn.addEventListener("click", () => { goTo(current - 1); restart(); });
+
+    // Pause when mouse is over the slideshow
+    familySlider.addEventListener("mouseenter", () => clearInterval(timer));
+    familySlider.addEventListener("mouseleave", start);
+
+    // Swipe support for phones
+    let touchStartX = 0;
+
+    familySlider.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    familySlider.addEventListener("touchend", (e) => {
+        const diff = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(diff) > 50) {
+            goTo(diff < 0 ? current + 1 : current - 1);
+            restart();
+        }
+    }, { passive: true });
+
+    start();
+
+})();
